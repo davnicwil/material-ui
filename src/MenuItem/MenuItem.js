@@ -132,6 +132,10 @@ class MenuItem extends Component {
      * The value of the menu item.
      */
     value: PropTypes.any,
+    /**
+     * Props to be passed to popover.
+     */
+    popoverProps: PropTypes.object,
   };
 
   static defaultProps = {
@@ -279,6 +283,7 @@ class MenuItem extends Component {
           open={this.state.open}
           useLayerForClickAway={false}
           onRequestClose={this.handleRequestClose}
+          {...popoverProps}
         >
           <Menu desktop={desktop} disabled={disabled} style={nestedMenuStyle}>
             {React.Children.map(menuItems, this.cloneMenuItem)}

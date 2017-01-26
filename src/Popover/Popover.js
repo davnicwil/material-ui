@@ -89,6 +89,14 @@ class Popover extends Component {
      * The zDepth of the popover.
      */
     zDepth: propTypes.zDepth,
+    /**
+     * Milliseconds wait for throttling handleResize calls
+     */
+    handleResizeThrottleWaitMillis: PropTypes.number,
+    /**
+     * Milliseconds wait for throttling handleScroll calls
+     */
+    handleScrollThrottleWaitMillis: PropTypes.number,
   };
 
   static defaultProps = {
@@ -118,8 +126,16 @@ class Popover extends Component {
 
   constructor(props, context) {
     super(props, context);
-    this.handleResize = throttle(this.setPlacement, 100);
-    this.handleScroll = throttle(this.setPlacement.bind(this, true), 50);
+
+    this.handleResize = throttle(
+      this.setPlacement, 
+      props.handleResizeThrottleWaitMillis || 100
+    );
+
+    this.handleScroll = throttle(
+      this.setPlacement.bind(this, true), 
+      props.handleScrollThrottleWaitMillis || 50
+    );
 
     this.state = {
       open: props.open,

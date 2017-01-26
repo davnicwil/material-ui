@@ -120,6 +120,10 @@ class IconMenu extends Component {
      * layer, which will prevent clicks to the underlying elements.
      */
     useLayerForClickAway: PropTypes.bool,
+    /**
+     * Props to be passed to popover.
+     */
+    popoverProps: PropTypes.object,
   };
 
   static defaultProps = {
@@ -327,6 +331,7 @@ You should wrapped it with an <IconButton />.`);
           animated={animated}
           animation={animation}
           context={this.context}
+          {...this.props.popoverProps}
         >
           {menu}
         </Popover>

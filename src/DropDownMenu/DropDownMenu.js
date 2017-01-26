@@ -166,6 +166,10 @@ class DropDownMenu extends Component {
      * The value that is currently selected.
      */
     value: PropTypes.any,
+    /**
+     * Props to be passed to popover.
+     */
+    popoverProps: PropTypes.object,
   };
 
   static defaultProps = {
@@ -377,6 +381,7 @@ class DropDownMenu extends Component {
           open={open}
           animated={animated}
           onRequestClose={this.handleRequestCloseMenu}
+          {...popoverProps}
         >
           <Menu
             maxHeight={maxHeight}
